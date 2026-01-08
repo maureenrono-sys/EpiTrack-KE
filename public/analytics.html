@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EpiTrack-KE | Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Map View</a>
+        <a href="entry.html">Add Case</a>
+        <a href="analytics.html">Analytics</a>
+    </nav>
+
+    <div class="container">
+        <h2>Epidemiological Trends</h2>
+        <div style="max-width: 600px; margin: auto;">
+            <canvas id="ageChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        async function buildCharts() {
+            const res = await fetch('/api/surveillance');
+            const data = await res.json();
+
+            // Group by Age: Under 5 vs Over 5 (Critical for Malaria)
+            const under5 = data.filter(d => parseInt(d.age) < 5).length;
+            const over5 = data.filter(d => parseInt(d.age) >= 5).length;
+
+            new Chart(document.getElementById('ageChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Children < 5 yrs', 'Adults/Children > 5 yrs'],
+                    datasets: [{
+                        label: 'Number of Cases',
+                        data: [under5, over5],
+                        backgroundColor: ['#dc3545', '#007bff']
+                    }]
+                },
+                options: {
+                    plugins: { title: { display: true, text: 'Malaria Cases by Age Group' } }
+                }
+            });
+        }
+        buildCharts();
+    </script>
+</body>
+</html>

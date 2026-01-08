@@ -1,0 +1,7 @@
+patient_id,age,gender,county,sub_county,lat,lng,result,test_type,timestamp
+PN001,4,F,Kisumu,Kisumu Central,-0.0917,34.768,Positive,RDT,2026-01-02 10:30
+PN002,28,M,Nairobi,Dagoretti,-1.2921,36.8219,Negative,Microscopy,2026-01-02 11:15
+PN003,2,M,Siaya,Bondo,-0.237,34.269,Positive,RDT,2026-01-03 09:00
+PN004,35,F,Kilifi,Malindi,-3.219,40.116,Positive,Microscopy,2026-01-03 14:20
+PN005,12,F,Mombasa,Nyali,-4.043,39.668,Negative,RDT,2026-01-04 08:45
+PN006,1,M,Kisumu,Nyando,-0.182,34.908,Positive,RDT,2026-01-05 16:10
